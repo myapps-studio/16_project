@@ -26,14 +26,10 @@ var GalleryItem = React.createClass({
 
     render: function() {
       return (
-        React.createElement('li', {key: movie.id},
-          React.createElement('div', {},
             React.createElement('h2', {}, this.props.movie.name),
-            React.createElement('img', {src: this.props.movie.src})
+            React.createElement('iframe', {src: this.props.movie.src})
           )
-        )
-      )
-    },
+      }
   });
   
   var movie = {
@@ -50,15 +46,13 @@ var GalleryItem = React.createClass({
 
     render: function() {
       return (
-          React.createElement('div', {},
-            React.createElement('h2', {}, this.props.movietitle.title),
-          )
+            React.createElement('h3', {}, this.props.movietitle.title)
         )
     },
   });
   
   var movietitle = {
-    title: 'test'
+    title: 'test title'
   };
 
 // MovieDescription
@@ -69,9 +63,7 @@ var MovieDescription = React.createClass({
 
   render: function() {
     return (
-        React.createElement('div', {},
-          React.createElement('p', {}, this.props.moviedescription.description),
-        )
+          React.createElement('p', {}, this.props.moviedescription.description)
       )
   },
 });
@@ -88,9 +80,7 @@ var MoviesList = React.createClass({
 
   render: function() {
     return (
-        React.createElement('div', {},
-          React.createElement('p', {}, this.props.movieslist.list),
-        )
+          React.createElement('p', {}, this.props.movieslist.list)
       )
   },
 });
@@ -98,16 +88,20 @@ var MoviesList = React.createClass({
 var movieslist = {
   list: 'test list',
 };
+
 // end
 
-  var element = 
-    React.createElement('div', {},
-      React.createElement(GalleryItem, {image: image}),
-      React.createElement(Movie, {key: movie.id, movie: movie},
-        React.createElement(MovieTitle, {movietitle: movietitle}),
-        React.createElement(MovieDescription, {moviedescription: moviedescription}),
-        React.createElement(MoviesList, {movieslist: movieslist})
-      )
-    );
+var element =
+React.createElement('div', {},
+  React.createElement(GalleryItem, {image: image}),
+  React.createElement('h1', {}, 'Lista filmów'),
+  React.createElement(MoviesList, {movieslist:movieslist}),
+  React.createElement('li', {},
+    React.createElement(MovieTitle, {movietitle:movietitle}),
+    React.createElement(Movie, {key: movie.id, movie:movie}),
+    React.createElement(MovieDescription, {moviedescription:moviedescription}),
+  )
+);
 
-  ReactDOM.render(element, document.getElementById('app'));
+ReactDOM.render(element, document.getElementById('app'));
+
